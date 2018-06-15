@@ -28,8 +28,7 @@ public class BinaryTreeTest {
         tree.insert(7);
         tree.delete(5);
         System.out.println(tree);
-
-        tree.getTreeString();
+        System.out.print(tree.search(15));
     }
 
 }

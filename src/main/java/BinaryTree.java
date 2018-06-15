@@ -18,29 +18,35 @@ public class BinaryTree<T extends Comparable<T>> extends AbstractTree<T>{
         root = new TreeNode<T>(val);
     }
 
+    public BinaryTree() {}
+
     @Override
-    public void insert(T val) {
+    public boolean insert(T val) {
         TreeNode<T> treeNode = new TreeNode<T>(val);
-        insert(treeNode, root);
+        return insert(treeNode, root);
     }
 
 
-    private void insert(TreeNode<T> node2Insert, TreeNode<T> node) {
+    protected boolean insert(TreeNode<T> node2Insert, TreeNode<T> node) {
         if(node2Insert.getVal().compareTo(node.getVal()) > 0) {
             if(node.getRight() == null) {
                 node.setRight(node2Insert);
                 node2Insert.setParent(node);
+                return true;
             }
             else
-                insert(node2Insert, node.getRight());
-        } else {
+                return insert(node2Insert, node.getRight());
+        } else if (node2Insert.getVal().compareTo(node.getVal()) < 0){
             if(node.getLeft() == null) {
                 node.setLeft(node2Insert);
                 node2Insert.setParent(node);
+                return true;
             }
             else
-                insert(node2Insert, node.getLeft());
+                return insert(node2Insert, node.getLeft());
         }
+        else
+            return false;
     }
 
 
@@ -69,6 +75,10 @@ public class BinaryTree<T extends Comparable<T>> extends AbstractTree<T>{
         if(node.getLeft() == null)
             return node;
         return getSuccessor(node.getLeft());
+    }
+
+    public TreeNode search(T val) {
+        return getTreeNodeByVal(val, root);
     }
 
     private TreeNode getTreeNodeByVal(T val, TreeNode node) {
