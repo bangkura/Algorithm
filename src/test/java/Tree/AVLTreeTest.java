@@ -1,3 +1,6 @@
+package Tree;
+
+import Tree.AVLTree;
 import org.junit.Test;
 
 /**
@@ -16,8 +19,11 @@ public class AVLTreeTest {
     public void test() {
         AVLTree<Integer> tree = new AVLTree<Integer>(15);
         tree.insert(5);
+        tree.insert(16512);
         //System.out.println(tree);
         tree.insert(2);
         System.out.println(tree);
+
+        TreePrinter.printTree(tree.search(15));
     }
 }

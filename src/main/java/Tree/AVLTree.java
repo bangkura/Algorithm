@@ -1,3 +1,5 @@
+package Tree;
+
 /**
  * Copyright (C) 2014 iQIYI.COM - All Rights Reserved
  * <p>
@@ -112,7 +114,12 @@ public class AVLTree<T extends Comparable<T>> extends BinaryTree<T>{
 
     @Override
     public TreeNode<T> delete(T val) {
-        return null;
+        TreeNode node = super.delete(val);
+        if(node != null) {
+            maintainHeight();
+            maintainTree((AVLTreeNode) root);
+        }
+        return node;
     }
 
     public void test(TreeNode node) {
